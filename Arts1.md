@@ -61,7 +61,24 @@ if(value <= MIN_LIMIT){
  
  
 利用Map的computeIfAbsent
-Map<Integer, List<Integer>> userMap = new HashMap<>();
-        for(){
+普通
+        Map<Integer, List<Integer>> userMap = new HashMap<>();
+                public addUser(int type, int uid){
+                         List<Integer> list = userMap.get(type);
+                        if(list == null){
+                        list = new LinkedList<>();
+                        userMap.put(type, list);
+                        }
+                        list.add(uid);
+                }
+        
+精简
+        Map<Integer, List<Integer>> userMap = new HashMap<>();
+        public addUser(int type, int uid){
+                userMap.computeIfAbsend(type, key -> new LinkedList<>()).add(a);
         }
+       
+        
+        
+        
 ### Share
