@@ -44,8 +44,8 @@ Arts1
         }
 
 # Review
-The Myth of the Myth of the 10x Programmer
-<https://payne.org/blog/the-myth-of-the-myth-of-the-10x-programmer/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website>
+The Myth of the Myth of the 10x Programmer  
+<https://payne.org/blog/the-myth-of-the-myth-of-the-10x-programmer/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website>  
 对于同一个问题，普通程序员立刻埋头写大量代码，耗时两周；厉害的程序员在网上点几下鼠标注册了某个免费的SaaS工具，耗时5分钟。对于脑力劳动者来说，知道“该按哪个正确的按钮”比盲目堆砌时间埋头苦干要有用得多。
 
 # Tips
