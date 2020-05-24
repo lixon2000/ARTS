@@ -43,42 +43,52 @@ Arts1
             }
         }
 
-### Review
+# Review
 
 
-### Tips
-java代码精简
-避免条件判断
-double result;
-if(value <= MIN_LIMIT){
-        result = MIN_LIMIT;
+# Tips
+### java代码精简
+#### 避免条件判断
+普通
+
+        double result;
+        if(value <= MIN_LIMIT){
+                result = MIN_LIMIT;
         } else {
-        result = value;
+                result = value;
         }
 
 精简
- double result = Math.max(MIN_LIMIT, value);
+
+         double result = Math.max(MIN_LIMIT, value);
  
- 
-利用Map的computeIfAbsent
+#### 利用Map的computeIfAbsent
 普通
+
         Map<Integer, List<Integer>> userMap = new HashMap<>();
-                public addUser(int type, int uid){
-                         List<Integer> list = userMap.get(type);
-                        if(list == null){
+        public addUser(int type, int uid){
+                List<Integer> list = userMap.get(type);
+                if(list == null){
                         list = new LinkedList<>();
                         userMap.put(type, list);
-                        }
-                        list.add(uid);
                 }
+                list.add(uid);
+        }
         
 精简
+
         Map<Integer, List<Integer>> userMap = new HashMap<>();
         public addUser(int type, int uid){
                 userMap.computeIfAbsend(type, key -> new LinkedList<>()).add(a);
         }
-       
-        
-        
         
 ### Share
+看了臧萌老师的职场求生攻略->优先级，对我自己的工作优先级进行了梳理，今后要在这几个方面进行排序：
+-生产线上问题优先级最高，可查到头部；
+-安全问题一般比较优先；
+-大的模块开发优先级由经理决定；
+-涉及公司的kpi的工作，适当优先；
+-合作过程中，不能阻塞别人的开发；
+-合作开发先约定API和协议；
+-沟通相关工作要放在独立开发工作之前；
+
