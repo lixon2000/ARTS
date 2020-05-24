@@ -47,6 +47,21 @@ Arts1
 
 
 ### Tips
+java代码精简
+避免条件判断
+double result;
+if(value <= MIN_LIMIT){
+        result = MIN_LIMIT;
+        } else {
+        result = value;
+        }
 
-
+精简
+ double result = Math.max(MIN_LIMIT, value);
+ 
+ 
+利用Map的computeIfAbsent
+Map<Integer, List<Integer>> userMap = new HashMap<>();
+        for(){
+        }
 ### Share
