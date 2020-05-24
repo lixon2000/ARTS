@@ -1,8 +1,11 @@
 Arts1
 ===
 
-### Algorithm
-LeetCode 3
+# Algorithm
+## LeetCode 3 无重复字符的最长子串
+### 描述：给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+### 思路：1遍历字符串 2使用滑动窗口，由于从前一个已经遍历的最长字符串中已经包含从后一个字符开始遍历的部分字符串，因此不再重复遍历，降低时间复杂度O(n)
+### java实现：
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -39,3 +42,11 @@ class Solution {
         return maxLen;
     }
 }
+
+### Review
+
+
+### Tips
+
+
+### Share
