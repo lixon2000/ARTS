@@ -2,11 +2,26 @@ Arts1
 ===
 
 # Algorithm
-## LeetCode 3 无重复字符的最长子串 ，<https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/>
-### 描述：给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
-### 思路：1遍历字符串 2使用滑动窗口，由于从前一个已经遍历的最长字符串中已经包含从后一个字符开始遍历的部分字符串，因此不再重复遍历，降低时间复杂度O(n)
+## LeetCode 7 整数反转 ，<https://leetcode-cn.com/problems/reverse-integer/>
+### 描述：给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。注意:假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+### 思路：通过余数按位累积。主要是溢出返回0的处理。
 ### java实现：
 
+
+        class Solution {
+            public int reverse(int x) {
+                long ret = 0;
+                while(x != 0){
+                        int i = x%10;
+                        ret = ret*10 + i;
+                        x = x/10;
+                }
+
+                int retInt = (int)ret;
+                retInt = ((retInt == ret)? (int)retInt: 0);             // 溢出处理
+                return retInt;
+            }
+        }
         
 
 # Review
