@@ -40,6 +40,11 @@ Architecture Jams: a Collaborative Way of Designing Software
 - Summarize with notes
 
 # Tips
+### UDP通信相关
+
+- UDP的头中的长度是指整个UDP包的长度，最小为8，即空包；
+- UDP的投中的校验和和其他协议的校验和类似，都是反码相加，是一种弱校验的机制；
+
 ### java代码精简
 #### 避免条件判断
 普通
