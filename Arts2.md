@@ -78,7 +78,7 @@ Architecture Jams: a Collaborative Way of Designing Software
 
 Lombok注解是在编译时对java代码进行代理，生成的二进制字节码中，便拥有了get、set、toString等方法。Lombok注解必须引入三方包，且安装IDE插件。否则开发过程中会出错。
 
-### Share
+# Share
 耗子叔说的技术领导力总结
  - 第一，你要吃透基础技术。基础技术是各种上层技术共同的基础。这个不细说。
  - 第二，提高学习能力。所谓学习能力，就是能够很快地学习新技术，又能在关键技术上深入的能力。主要体现：学习的信息源；与高手交流；举一反三的思考；不怕困难的态度；开放的心态。
