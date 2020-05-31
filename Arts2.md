@@ -46,40 +46,38 @@ Architecture Jams: a Collaborative Way of Designing Software
 - UDP的投中的校验和和其他协议的校验和类似，都是反码相加，是一种弱校验的机制；
 
 ### java代码精简
-#### 避免条件判断
+#### 利用方法引用
 普通
 
-        double result;
-        if(value <= MIN_LIMIT){
-                result = MIN_LIMIT;
-        } else {
-                result = value;
-        }
+        Arrays.sort(nameArray, (a, b) -> a.compareToIgnoreCase(b));
 
 精简
 
-         double result = Math.max(MIN_LIMIT, value);
+        Arrays.sort(nameArray, String::compareToIgnoreCase);
  
-#### 利用Map的computeIfAbsent
+#### Lombok注解
 普通
 
-        Map<Integer, List<Integer>> userMap = new HashMap<>();
-        public addUser(int type, int uid){
-                List<Integer> list = userMap.get(type);
-                if(list == null){
-                        list = new LinkedList<>();
-                        userMap.put(type, list);
+       public class UserV0{
+                private int id;
+                public void setID(int id){
+                        this.id = id;
                 }
-                list.add(uid);
-        }
-        
+                public void getID(){
+                        return this.id;
+                }
+       }
+               
 精简
 
-        Map<Integer, List<Integer>> userMap = new HashMap<>();
-        public addUser(int type, int uid){
-                userMap.computeIfAbsend(type, key -> new LinkedList<>()).add(a);
-        }
-        
+        @Getter
+        @Setter
+       public class UserV0{
+                private int id;
+       }
+
+Lombok注解是在编译时对java代码进行代理，生成的二进制字节码中，便拥有了get、set、toString等方法。Lombok注解必须引入三方包，且安装IDE插件。否则开发过程中会出错。
+
 ### Share
 ：
 - 生产线上问题优先级最高，可查到头部；
