@@ -2,27 +2,39 @@ Arts3
 ===
 
 # Algorithm
-## LeetCode 7 整数反转 ，<https://leetcode-cn.com/problems/reverse-integer/>
-### 描述：给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。注意:假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
-### 思路：通过余数按位累积。主要是溢出返回0的处理。
+## LeetCode 9 回文数 ，<https://leetcode-cn.com/problems/palindrome-number/>
+### 描述：判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+### 思路：从数字中间阶段，检查是否左右对称，循环终止的条件是反转的数字大于正向的数字。
 ### java实现：
 
 
-        class Solution {
-            public int reverse(int x) {
-                long ret = 0;
-                while(x != 0){
-                        int i = x%10;
-                        ret = ret*10 + i;
-                        x = x/10;
-                }
-
-                int retInt = (int)ret;
-                retInt = ((retInt == ret)? (int)retInt: 0);             // 溢出处理
-                return retInt;
-            }
+       class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0){
+            return false;
         }
-        
+
+        if(x == 0){
+            return true;
+        }
+
+        if(x%10 == 0){
+            return false;
+        }
+
+        int y = 0;
+        while(y < x){
+            y = y*10 + x%10;
+            x /= 10;
+        }
+
+        if((x == y) || (x == y/10)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+}        
 
 # Review
 What makes a programming exercise good?  
