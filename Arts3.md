@@ -33,7 +33,7 @@ Arts3
                    return false;
                }
            }
-       }        
+    }        
 
 # Review
 What makes a programming exercise good?  
