@@ -7,34 +7,33 @@ Arts3
 ### 思路：从数字中间阶段，检查是否左右对称，循环终止的条件是反转的数字大于正向的数字。
 ### java实现：
 
+    class Solution {
+          public boolean isPalindrome(int x) {
+               if(x < 0){
+                   return false;
+               }
 
-       class Solution {
-    public boolean isPalindrome(int x) {
-        if(x < 0){
-            return false;
-        }
+               if(x == 0){
+                   return true;
+               }
 
-        if(x == 0){
-            return true;
-        }
+               if(x%10 == 0){
+                   return false;
+               }
 
-        if(x%10 == 0){
-            return false;
-        }
+               int y = 0;
+               while(y < x){
+                   y = y*10 + x%10;
+                   x /= 10;
+               }
 
-        int y = 0;
-        while(y < x){
-            y = y*10 + x%10;
-            x /= 10;
-        }
-
-        if((x == y) || (x == y/10)){
-            return true;
-        } else{
-            return false;
-        }
-    }
-}        
+               if((x == y) || (x == y/10)){
+                   return true;
+               } else{
+                   return false;
+               }
+           }
+       }        
 
 # Review
 What makes a programming exercise good?  
