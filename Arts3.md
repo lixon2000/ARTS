@@ -58,37 +58,22 @@ What makes a programming exercise good?
 - UDP的投中的校验和和其他协议的校验和类似，都是反码相加，是一种弱校验的机制；
 
 ### java代码精简
-#### 利用方法引用
-普通
+直接内存（对外内存，directByteBuff）
+内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。使用未公开的Unsafe和NIO包下ByteBuffer来创建堆外内存。
+1、	减少了垃圾回收
+2、	提升复制速度(io效率)
 
-        Arrays.sort(nameArray, (a, b) -> a.compareToIgnoreCase(b));
+Unpooled，用来分配非池化的一块内存，可以是堆内的，也可以堆外的（直接的）
+零拷贝
+Netty中的Zero-copy 与OS层面上的Zero-copy不太一样, Netty的Zero-coyp完全是在用户态(Java 层面)的, 它的Zero-copy的更多的是偏向于优化数据操作这样的概念。
+Netty的Zero-copy体现在如下几个个方面：
+	Netty提供了CompositeByteBuf 类，它可以将多个 ByteBuf 合并为一个逻辑上的 ByteBuf，避免了各个 ByteBuf 之间的拷贝。
+	通过wrap操作，我们可以将 byte[]数组、ByteBuf、ByteBuffer等包装成一个Netty ByteBuf对象，进而避免了拷贝操作。
+	ByteBuf 支持slice操作，因此可以将ByteBuf分解为多个共享同一个存储区域的 ByteBuf，避免了内存的拷贝。
+	通过 FileRegion 包装的FileChannel.tranferTo实现文件传输，可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write方式导致的内存拷贝问题。
 
-精简
-
-        Arrays.sort(nameArray, String::compareToIgnoreCase);
  
-#### Lombok注解
-普通
 
-       public class UserV0{
-                private int id;
-                public void setID(int id){
-                        this.id = id;
-                }
-                public void getID(){
-                        return this.id;
-                }
-       }
-               
-精简
-
-        @Getter
-        @Setter
-       public class UserV0{
-                private int id;
-       }
-
-Lombok注解是在编译时对java代码进行代理，生成的二进制字节码中，便拥有了get、set、toString等方法。Lombok注解必须引入三方包，且安装IDE插件。否则开发过程中会出错。
 
 # Share
 耗子叔说的技术领导力总结
