@@ -61,15 +61,14 @@ What makes a programming exercise good?
 Unpooled，用来分配非池化的一块内存，可以是堆内的，也可以堆外的（直接的）
 
 #### 零拷贝
-Netty中的Zero-copy 与OS层面上的Zero-copy不太一样, Netty的Zero-coyp完全是在用户态(Java 层面)的, 它的Zero-copy的更多的是偏向于优化数据操作这样的概念。
-Netty的Zero-copy体现在如下几个个方面：
-	Netty提供了CompositeByteBuf 类，它可以将多个 ByteBuf 合并为一个逻辑上的 ByteBuf，避免了各个 ByteBuf 之间的拷贝。
-	通过wrap操作，我们可以将 byte[]数组、ByteBuf、ByteBuffer等包装成一个Netty ByteBuf对象，进而避免了拷贝操作。
-	ByteBuf 支持slice操作，因此可以将ByteBuf分解为多个共享同一个存储区域的 ByteBuf，避免了内存的拷贝。
-	通过 FileRegion 包装的FileChannel.tranferTo实现文件传输，可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write方式导致的内存拷贝问题。
+Netty中的Zero-copy 与OS层面上的Zero-copy不太一样, Netty的Zero-coyp完全是在用户态(Java 层面)的, 它的Zero-copy的更多的是偏向于优化数据操作这样的概念。Netty的Zero-copy体现在如下几个个方面：
+ - Netty提供了CompositeByteBuf 类，它可以将多个 ByteBuf 合并为一个逻辑上的 ByteBuf，避免了各个 ByteBuf 之间的拷贝。
+ - 通过wrap操作，我们可以将 byte[]数组、ByteBuf、ByteBuffer等包装成一个Netty ByteBuf对象，进而避免了拷贝操作。
+ - ByteBuf 支持slice操作，因此可以将ByteBuf分解为多个共享同一个存储区域的 ByteBuf，避免了内存的拷贝。
+ - 通过 FileRegion 包装的FileChannel.tranferTo实现文件传输，可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write方式导致的内存拷贝问题。
 
 #### ByteBuf的计数
- 	源码中很多地方有ReferenceCountUtil.release(cast)，将ByteBuf的引用计数减1，当减到0时，内存将被释放，此时再调用会引起IllegalReferenceCountException。因此遇到这种情况，需要使用ByteBuf.retain()，使计数增加。
+ - 源码中很多地方有ReferenceCountUtil.release(cast)，将ByteBuf的引用计数减1，当减到0时，内存将被释放，此时再调用会引起IllegalReferenceCountException。因此遇到这种情况，需要使用ByteBuf.retain()，使计数增加。
 
 
 # Share
