@@ -6,46 +6,44 @@ Arts4
 ### 描述：给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。。
 ### 思路：从左向右两个字符一起遍历，判断前面字符是否小于后面字符。
 ### java实现：
-class Solution {
-    public int romanToInt(String s) {
-    	
-    	int sum = 0;
-    	int pre = getValue(s.charAt(0));
-    	for(int i=1; i<s.length(); i++){
-    		int value = getValue(s.charAt(i));
-    		if(pre < value){
-    			value -= pre;
-    		} else{
-    			sum = sum + pre;
-    		}
-    		pre = value;
-    	}
-    	sum += pre;
-    	
-    	return sum;
-    }
+    class Solution {
+        public int romanToInt(String s) {
+            int sum = 0;
+            int pre = getValue(s.charAt(0));
+            for(int i=1; i<s.length(); i++){
+                int value = getValue(s.charAt(i));
+                if(pre < value){
+                    value -= pre;
+                } else{
+                    sum = sum + pre;
+                }
+                pre = value;
+            }
+            sum += pre;
+            return sum;
+        }
     
-    private int getValue(char c){
-    	switch(c){
-    	case 'I':
-    		return 1;
-    	case 'V':
-    		return 5;
-    	case 'X':
-    		return 10;
-    	case 'L':
-    		return 50;
-    	case 'C':
-    		return 100;
-    	case 'D':
-    		return 500;
-    	case 'M':
-    		return 1000;
-    	default:
-    		return 0;
-    	}
+        private int getValue(char c){
+            switch(c){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return 0;
+            }
+        }
     }
-}
 
 # Review
 What makes a programming exercise good?  
