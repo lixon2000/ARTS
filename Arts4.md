@@ -46,20 +46,10 @@ Arts4
     }
 
 # Review
-What makes a programming exercise good?  
-<https://jvns.ca/blog/2019/11/20/what-makes-a-programming-exercise-good/>  
-什么让编程练习更好：  
-- it’s fun  
-- it teaches you something you care about
-- it’s a challenge
-- you can tell if you succeeded
-- you can do it quickly
-- the author believes in you
-- it’s been tested
-- you won’t get stuck
-- it’s easy to get help
-- no time-consuming setup required
-- it’s easy to extend
+Network-Layer DDoS Attack Trends for Q1 2020?  
+<https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020//>  
+该文总结了一些2020年一季度DDOS攻击的趋势。
+
 
 # Tips
 ### Netty
