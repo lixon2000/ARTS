@@ -52,12 +52,9 @@ Network-Layer DDoS Attack Trends for Q1 2020?
 
 
 # Tips
-#### BIO、NIO和NIO2
- - BIO，同步阻塞，每个线程处理一个socket阻塞读写。一个ServerSocket阻塞监听，accept到Socket后，分配一个线程（或线程池）负责读写。
- - NIO，同步非阻塞，一个select线程可以监听所有事件，以及处理所有SocketChannel。ServerSocketChannel打开后监听，Selector循环调用select，阻塞等待IO事件，select到事件后，依据事件类型（accept、read、write）指派其他线程做不同处理。如果是accept事件，创建SocketChannel。NIO之所以是同步，是因为它的accept/read/write方法的内核I/O操作都会阻塞当前线程
- - NIO2，AIO，异步非阻塞。与NIO不同，当进行读写操作时，只须直接调用API的read或write方法即可，read/write方法都是异步的，完成后会主动调用回调函数。在AIO编程中，发出一个事件（accept read write等）之后要指定事件处理类（回调函数）
-
-
+#### select和Epoll
+ - Select。BIO阻塞一个线程监听socket的IO事件，导致select的诞生。而select解决了阻塞的问题，但方式比较粗暴。一个问题是，主线程在select时，向所有socket注册了自己，并将自己阻塞，等待事件。当OS中断引起IO事件触发时，线程唤醒，要从所有socket中移除。另一个问题，主线程唤醒，要遍历所有IO事件才能知道是哪个socket发出了事件。
+ - Epoll的诞生，是将select精细化。Eventpoll对象像是线程和socket之间的一个代理，将socket维护到自己的红黑树里，此后阻塞等待，线程唤醒时不需要遍历socket移除。Epoll中维护事件的列表rdlist，socket产生事件后插入其中，线程唤醒后，可以迅速找到就绪的事件而避免遍历所有socket。
 
 
 # Share
