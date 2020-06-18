@@ -1,10 +1,10 @@
-Arts4
+Arts5
 ===
 
 # Algorithm
-## LeetCode 13 罗马数字转整数 ，<https://leetcode-cn.com/problems/roman-to-integer//>
-### 描述：给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。。
-### 思路：从左向右两个字符一起遍历，判断前面字符是否小于后面字符。
+## LeetCode 14. 最长公共前缀 ，<https://leetcode-cn.com/problems/longest-common-prefix/>
+### 描述：编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+### 思路：从第一个字符开始，遍历每个字符串，直到发现不同的字符。
 ### java实现：
     class Solution {
         public String longestCommonPrefix(String[] strs) {
