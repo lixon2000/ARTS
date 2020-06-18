@@ -42,10 +42,9 @@ Arts5
     }
 
 # Review
-Network-Layer DDoS Attack Trends for Q1 2020?  
-<https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020//>  
-该文总结了一些2020年一季度DDOS攻击的趋势。
-
+What happens when you update your DNS? 
+<https://jvns.ca/blog/how-updating-dns-works/>  
+该文解释了recursive和authoritative这两类DNS servers的功能，和当修改NS记录和更新nameserver的时候，地址解析的流程。
 
 # Tips
 #### select和Epoll
