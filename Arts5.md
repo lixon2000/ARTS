@@ -7,41 +7,37 @@ Arts4
 ### 思路：从左向右两个字符一起遍历，判断前面字符是否小于后面字符。
 ### java实现：
     class Solution {
-        public int romanToInt(String s) {
-            int sum = 0;
-            int pre = getValue(s.charAt(0));
-            for(int i=1; i<s.length(); i++){
-                int value = getValue(s.charAt(i));
-                if(pre < value){
-                    value -= pre;
-                } else{
-                    sum = sum + pre;
+        public String longestCommonPrefix(String[] strs) {
+                if(strs == null || strs.length == 0){
+                    return "";
                 }
-                pre = value;
-            }
-            sum += pre;
-            return sum;
-        }
-    
-        private int getValue(char c){
-            switch(c){
-            case 'I':
-                return 1;
-            case 'V':
-                return 5;
-            case 'X':
-                return 10;
-            case 'L':
-                return 50;
-            case 'C':
-                return 100;
-            case 'D':
-                return 500;
-            case 'M':
-                return 1000;
-            default:
-                return 0;
-            }
+
+                String subStr = "";
+                int length = strs[0].length();
+
+                for(int j=0; j<length; j++){	// 每个char
+                    char publicChar = 0;
+                    for(int i=0; i<strs.length; i++){	// 每个字符串
+
+                        String str = strs[i];
+                        if(str.length() <= j){
+                            // 终止
+                            return subStr;
+                        } else{
+                            char c = str.charAt(j);
+                            if(publicChar != 0 && publicChar != c){
+                                return subStr;
+                            } else{
+                                publicChar = c;
+                            }
+                        }
+
+                    }
+                    subStr += publicChar;
+                }
+
+                return subStr;
+
         }
     }
 
