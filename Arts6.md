@@ -2,41 +2,29 @@ Arts5
 ===
 
 # Algorithm
-## LeetCode 14. 最长公共前缀 ，<https://leetcode-cn.com/problems/longest-common-prefix/>
-### 描述：编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
-### 思路：从第一个字符开始，遍历每个字符串，直到发现不同的字符。
+## LeetCode 21. 合并两个有序链表 ，<https://leetcode-cn.com/problems/merge-two-sorted-lists/>
+### 描述：将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+### 思路：同时遍历两个链表，生成一个新的链表。
 ### java实现：
     class Solution {
-        public String longestCommonPrefix(String[] strs) {
-                if(strs == null || strs.length == 0){
-                    return "";
-                }
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
-                String subStr = "";
-                int length = strs[0].length();
-
-                for(int j=0; j<length; j++){	// 每个char
-                    char publicChar = 0;
-                    for(int i=0; i<strs.length; i++){	// 每个字符串
-
-                        String str = strs[i];
-                        if(str.length() <= j){
-                            // 终止
-                            return subStr;
-                        } else{
-                            char c = str.charAt(j);
-                            if(publicChar != 0 && publicChar != c){
-                                return subStr;
-                            } else{
-                                publicChar = c;
-                            }
-                        }
-
+                ListNode preHead = new ListNode(-1);
+                ListNode prev = preHead;
+                while(l1 != null && l2 != null){
+                    if(l1.val <= l2.val){
+                        prev.next = l1;
+                        l1 = l1.next;
+                    } else {
+                        prev.next = l2;
+                        l2 = l2.next;
                     }
-                    subStr += publicChar;
+                    prev = prev.next;
                 }
 
-                return subStr;
+                prev.next = (l1 == null) ? l2: l1;
+
+                return preHead.next;
 
         }
     }
