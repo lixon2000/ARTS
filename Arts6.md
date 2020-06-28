@@ -4,7 +4,7 @@ Arts6
 # Algorithm
 ## LeetCode 21. 合并两个有序链表 ，<https://leetcode-cn.com/problems/merge-two-sorted-lists/>
 ### 描述：将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
-### 思路：同时遍历两个链表，生成一个新的链表。
+### 思路：同时遍历两个链表，生成一个新的链表。新的链表是通过prev生成，因此，核心目的是确定prev的next。
 ### java实现：
     class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
