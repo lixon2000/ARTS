@@ -4,7 +4,7 @@ Arts7
 # Algorithm
 ## 剑指 Offer 24. 反转链表 ，<https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/>
 ### 描述：定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。 
-### 思路：迭代过程中，使用临时节点将下一个节点先存下来。
+### 思路：双指针迭代，迭代过程中，使用临时节点将下一个节点先存下来。
 ### java实现：
     /**
      * Definition for singly-linked list.
