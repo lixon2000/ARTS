@@ -31,9 +31,13 @@ Arts7
     }
 
 # Review
-How to put an HTML page on the internet 
-<https://jvns.ca/blog/2019/09/06/how-to-put-an-html-page-on-the-internet/>  
-该文列出了一个简单的建站流程，并没太大技术含量，仅仅读懂英文而已。
+How I use Wireshark
+<https://jvns.ca/blog/2018/06/19/what-i-use-wireshark-for/>  
+ - 分析tcpdump获得的pcap文件；
+ - 查看一个TCP连接上的所有消息；
+ - 查看各个包体的具体字节，以及各层次的包头；
+ - 查找指定信息；
+ - 查看统计信息；
 
 # Tips
 #### TCP的三次握手和四次挥手
