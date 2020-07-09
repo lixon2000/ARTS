@@ -41,10 +41,11 @@ Arts8
 # Review
 Async IO on Linux: select, poll, and epoll
 <https://jvns.ca/blog/2017/06/03/async-io-on-linux--select--poll--and-epoll/>  
- - 分析tcpdump获得的pcap文件；
- - 不使用poll或select的原因：On each call to select() or poll(), the kernel must check all of the specified file descriptors to see if they are ready.  - 查看各个包体的具体字节，以及各层次的包头；
- - 查找指定信息；
- - 查看统计信息；
+此篇是一个人的读书心得，大致讲述了select、poll和epoll的一些观点
+ - 不使用poll或select的原因：On each call to select() or poll(), the kernel must check all of the specified file descriptors to see if they are ready. 
+ - epoll使用三个重要的系统调用：epoll_create, epoll_ctl, epoll_wait；
+ - 为什么用epll：you’re likely using epoll to do all your networking & pipe I/O!
+
 
 # Tips
 #### ThreadLocal
