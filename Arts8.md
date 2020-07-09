@@ -39,11 +39,10 @@ Arts8
 }
 
 # Review
-How I use Wireshark
-<https://jvns.ca/blog/2018/06/19/what-i-use-wireshark-for/>  
+Async IO on Linux: select, poll, and epoll
+<https://jvns.ca/blog/2017/06/03/async-io-on-linux--select--poll--and-epoll/>  
  - 分析tcpdump获得的pcap文件；
- - 查看一个TCP连接上的所有消息；
- - 查看各个包体的具体字节，以及各层次的包头；
+ - 不使用poll或select的原因：On each call to select() or poll(), the kernel must check all of the specified file descriptors to see if they are ready.  - 查看各个包体的具体字节，以及各层次的包头；
  - 查找指定信息；
  - 查看统计信息；
 
