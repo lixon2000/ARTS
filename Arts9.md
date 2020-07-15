@@ -48,13 +48,25 @@ Async IO on Linux: select, poll, and epoll
 
 
 # Tips
-#### ThreadLocal
- - ThreadLocal字面意思是Thread的变量，它只能存储一个泛型的Value。但每个Thread中可以存储多个ThreadLocal的值，使用ThreadLocalMap数据结构，通过get、set读写，key是ThreadLocal。
- - 数据结构Thread (map<ThreadLocal, T>)
- - ThreadLocal表面上看上去是共享的对象，其实在set、get是都是取当前Thread，再从中拿到成员ThreadLocalMap，去set和get。
- - 同时，ThreadLocal本身并没有保存任何值，它只是个中介key，通过它读写的是Thread中存的值，所以说，ThreadLocal的前提是Thread。
- - ThreadLocal在每个线程中对连接会创建一个副本，且在线程内部任何地方都可以使用，线程之间互不影响，这样一来就不存在线程安全问题，也不会严重影响程序执行性能。
- - ThreadLocalMap中解决Hash冲突的方式并非链表的方式，而是采用线性探测的方式，所谓线性探测，就是根据初始key的hashcode值确定元素在table数组中的位置，如果发现这个位置上已经有其他key值的元素被占用，则利用固定的算法寻找一定步长的下个位置，依次判断，直至找到能够存放的位置。
+#### JVM内存分配
+- 对象优先在Eden分配。大多数情况下，对象在新生代Eden区中分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC。
+- 大对象直接进入老年代。
+- 长期存活的对象将进入老年代。虚拟机给每个对象定义了一个对象年龄（Age）计数器。对象在Survivor区中每“熬过”一次Minor GC，年龄就增加1岁，当它的年龄增加到一定程度（默认为15岁），就将会被晋升到老年代中。
+同年对象，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。
+#### JVM垃圾收集流程
+ - Minor GC是指从年轻代空间（包括 Eden 和 Survivor 区域）回收内存。
+ - Major GC清理Tenured区(老年代)。
+ - Full GC清理整个heap区，包括Yong区和Tenured区。
+
+ - 在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间。如果这个条件成立，那么Minor GC可以确保是安全的。否则Full GC。
+JDK 6 Update24之后的规则变为只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC。
+
+ - Minor GC简要的流程：
+ - 1.	在GC开始的时候，对象只会存在于Eden区和名为“From”的Survivor区，Survivor区"To"是空的。
+ - 2.	紧接着进行GC，Eden区中所有存货的对象都会被复制到“To”,而在“From”区中，仍存活的对象会根据他们的年龄值来决定去向。年龄到达一定值（年龄阀值，可以通过-XX:MaxTenuringThreshold来设置）的对象会被移动到年老代中，没有达到阀值的对象会被复制到“To”区域。
+ - 3.	经过这次GC后，Eden区和From区已经被清空。这个时候，“From”和“To”会交换他们的角色，也就说新的“To”就是上次GC前的“From”,新的“From”就是上次GC前的To”。不管怎样，都会保证名为To的Survivor区域是空的。
+ - 4.	GC会一直重复这样的过程，直到“To”区被填满之后，会将所有对象移动到年老代中。
+
 
 # Share
 ### 降级熔断：如何屏蔽非核心系统故障的影响？
