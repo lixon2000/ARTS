@@ -57,10 +57,8 @@ Async IO on Linux: select, poll, and epoll
  - Minor GC是指从年轻代空间（包括 Eden 和 Survivor 区域）回收内存。
  - Major GC清理Tenured区(老年代)。
  - Full GC清理整个heap区，包括Yong区和Tenured区。
-
  - 在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间。如果这个条件成立，那么Minor GC可以确保是安全的。否则Full GC。
 JDK 6 Update24之后的规则变为只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC。
-
  - Minor GC简要的流程：
  - 1.	在GC开始的时候，对象只会存在于Eden区和名为“From”的Survivor区，Survivor区"To"是空的。
  - 2.	紧接着进行GC，Eden区中所有存货的对象都会被复制到“To”,而在“From”区中，仍存活的对象会根据他们的年龄值来决定去向。年龄到达一定值（年龄阀值，可以通过-XX:MaxTenuringThreshold来设置）的对象会被移动到年老代中，没有达到阀值的对象会被复制到“To”区域。
