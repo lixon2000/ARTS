@@ -41,9 +41,10 @@ Arts9
 Iptables basics<https://jvns.ca/blog/2017/06/07/iptables-basics/>  
 iptable的基本知识
  - filter主要用于过滤消息；
- - nat用于转发；
- - SNAT用于转发内网和外网间的消息；
- - MASQUERADE
+ - nat用于转发内网和外网间的消息；
+ - SNAT，基于源地址的地址转换；
+ - DNAT，基于目标的网络地址转；
+ - MASQUERADE，地址伪装；
 
 
 # Tips
