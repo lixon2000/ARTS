@@ -21,8 +21,7 @@ Arts9
 	    	ListNode end = head;	// 快指针
 	    	
 	    	// end 先走k-1步
-	    	for(int i=0; i<k-1; i++){
-	    		if(end == null){
+	    	for(int i=0; i<k-1; i++){	    		if(end == null){
 	    			return null;
 	    		}
 	    		end = end.next;
@@ -41,9 +40,10 @@ Arts9
 # Review
 Iptables basics<https://jvns.ca/blog/2017/06/07/iptables-basics/>  
 iptable的基本知识
- - 不使用poll或select的原因：On each call to select() or poll(), the kernel must check all of the specified file descriptors to see if they are ready. 
- - epoll使用三个重要的系统调用：epoll_create, epoll_ctl, epoll_wait；
- - 为什么用epll：you’re likely using epoll to do all your networking & pipe I/O!
+ - filter主要用于过滤消息；
+ - nat用于转发；
+ - SNAT用于转发内网和外网间的消息；
+ - MASQUERADE
 
 
 # Tips
