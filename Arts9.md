@@ -2,40 +2,64 @@ Arts9
 ===
 
 # Algorithm
-## 剑指 Offer 22. 链表中倒数第k个节点 ，<https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/>
-### 描述：输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
-### 思路：前后双指针迭代，两个指针间隔k。
+## 面试题 02.08. 环路检测 ，<https://leetcode-cn.com/problems/linked-list-cycle-lcci/>
+### 描述：给定一个有环链表，实现一个算法返回环路的开头节点。有环链表的定义：在链表中某个节点的next元素指向在它前面出现过的节点，则表明该链表存在环路。。
+### 思路：快慢两个指针迭代，相遇时表示有环。此时一个指针从当前节点迭代，另一个指针从head迭代，相遇点即是环的入口。
 ### java实现：
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) { val = x; }
-     * }
-     */
-    class Solution {
-        public ListNode getKthFromEnd(ListNode head, int k) {
+	/**
+	 * Definition for singly-linked list.
+	 * class ListNode {
+	 *     int val;
+	 *     ListNode next;
+	 *     ListNode(int x) {
+	 *         val = x;
+	 *         next = null;
+	 *     }
+	 * }
+	 */
+	public class Solution {
+	    public ListNode detectCycle(ListNode head) {
+		        
+		    	if(head == null || head.next == null){
+		    		return null;
+		    	}
+		    	
+		    	// 两个指针
+		    	ListNode slow = head;
+		    	ListNode fast = head;
+		    	while(fast != null){
+		    		
+		    		// slow走一步
+	    		slow = slow.next;
+		    		
+		    		// fast走两步
+		    		fast = fast.next;
+		    		if(fast != null){
+		    			fast = fast.next;
+		    		}
+		    		
+		    		if(slow == fast){
+		    			break;
+		    		}
+		    	}
+		    	
+		    	if(fast == null){
+		    		return null;
+		    	}
+		    	
+		    	// 此时slow是相遇点
+		    	
+		    	// 找入口
+		    	fast = head;
+		    	while(fast != slow){
+		    		fast = fast.next;
+		    		slow = slow.next;
+		    	}
+		    	
+		    	return slow;
 
-	    	ListNode front = head;	// 慢指针
-	    	ListNode end = head;	// 快指针
-	    	
-	    	// end 先走k-1步
-	    	for(int i=0; i<k-1; i++){	    		if(end == null){
-	    			return null;
-	    		}
-	    		end = end.next;
-	    	}
-	    	
-	    	while(end.next != null){
-	    		front = front.next;
-	    		end = end.next;
-	    	}
-	    	
-	    	return front;
-	    
-    }
-}
+   		 }
+	}
 
 # Review
 Iptables basics<https://jvns.ca/blog/2017/06/07/iptables-basics/>  
