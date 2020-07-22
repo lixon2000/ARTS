@@ -62,8 +62,8 @@ Arts10
 	}
 
 # Review
-Iptables basics<https://jvns.ca/blog/2017/06/07/iptables-basics/>  
-iptable的基本知识
+CDNs aren't just for caching<https://jvns.ca/blog/2016/04/29/cdns-arent-just-for-caching//>  
+CDNs aren't just for caching
  - filter主要用于过滤消息；
  - nat用于转发内网和外网间的消息；
  - SNAT，基于源地址的地址转换；
