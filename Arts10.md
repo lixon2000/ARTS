@@ -63,12 +63,11 @@ Arts10
 
 # Review
 CDNs aren't just for caching<https://jvns.ca/blog/2016/04/29/cdns-arent-just-for-caching//>  
-CDNs aren't just for caching
- - filter主要用于过滤消息；
- - nat用于转发内网和外网间的消息；
- - SNAT，基于源地址的地址转换；
- - DNAT，基于目标的网络地址转；
- - MASQUERADE，地址伪装；
+该文指出，CDN不仅用于缓存：
+ - make your site faster: speed up the dreaded TLS handshake，TLS握手加速；
+ - make your site faster: smart routing，智能路由；
+ - keep your site up: DDOS mitigation，缓解DDos攻击；
+ - performance is reliability，稳定性能；
 
 
 # Tips
