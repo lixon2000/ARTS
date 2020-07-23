@@ -2,63 +2,57 @@ Arts10
 ===
 
 # Algorithm
-## 面试题 02.08. 环路检测 ，<https://leetcode-cn.com/problems/linked-list-cycle-lcci/>
-### 描述：给定一个有环链表，实现一个算法返回环路的开头节点。有环链表的定义：在链表中某个节点的next元素指向在它前面出现过的节点，则表明该链表存在环路。。
-### 思路：快慢两个指针迭代，相遇时表示有环。此时一个指针从当前节点迭代，另一个指针从head迭代，相遇点即是环的入口。
+## 剑指 Offer 45. 把数组排成最小的数 ，<https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/>
+### 描述：输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+### 思路：int转成字符串，比较两个字符串a+b和b+a的大小，然后整体排序。
 ### java实现：
-	/**
-	 * Definition for singly-linked list.
-	 * class ListNode {
-	 *     int val;
-	 *     ListNode next;
-	 *     ListNode(int x) {
-	 *         val = x;
-	 *         next = null;
-	 *     }
-	 * }
-	 */
-	public class Solution {
-	    public ListNode detectCycle(ListNode head) {
-		        
-		    	if(head == null || head.next == null){
-		    		return null;
-		    	}
-		    	
-		    	// 两个指针
-		    	ListNode slow = head;
-		    	ListNode fast = head;
-		    	while(fast != null){
-		    		
-		    		// slow走一步
-	    		slow = slow.next;
-		    		
-		    		// fast走两步
-		    		fast = fast.next;
-		    		if(fast != null){
-		    			fast = fast.next;
-		    		}
-		    		
-		    		if(slow == fast){
-		    			break;
-		    		}
-		    	}
-		    	
-		    	if(fast == null){
-		    		return null;
-		    	}
-		    	
-		    	// 此时slow是相遇点
-		    	
-		    	// 找入口
-		    	fast = head;
-		    	while(fast != slow){
-		    		fast = fast.next;
-		    		slow = slow.next;
-		    	}
-		    	
-		    	return slow;
+	class Solution {
 
-   		 }
+	    public String minNumber(int[] nums) {
+
+	    	String[] numStrs = new String[nums.length];
+	    	for(int i=0; i<nums.length; i++){
+	    		numStrs[i] = String.valueOf(nums[i]);
+	    	}
+	    	
+	    	sort(numStrs);
+	    	
+	    	StringBuilder sb = new StringBuilder(); 
+	    	for(String s: numStrs){
+	    		sb.append(s);
+	    	}
+	    	return sb.toString();
+	    }
+	    
+	    private void sort(String[] numStrs){
+	    	// 插入排序 
+	    	int arrayLen = numStrs.length;
+	    	if(arrayLen <= 1){
+	    		return;
+	    	}
+	    	
+	    	for(int i=1; i<arrayLen; i++){
+	    		
+	    		// [0,i-1]是排好序的区间
+	    		String value = numStrs[i];
+	    		int j=i-1;
+	    		for(; j>=0; j--){
+	    			if(compare(value, numStrs[j]) < 0){
+	    				numStrs[j+1] = numStrs[j];
+	    			} else{
+	    				break;
+	    			}
+	    		}
+	    		numStrs[j+1] = value;
+	    	}
+	    	
+	    }
+	    
+	    // 1:a>b; -1:a<b
+	    private int compare(String a, String b){
+            return (a+b).compareTo(b+a);
+	    }
+	
 	}
 
 # Review
