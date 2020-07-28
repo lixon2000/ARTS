@@ -56,12 +56,17 @@ Arts11
 	}
 
 # Review
-CDNs aren't just for caching<https://jvns.ca/blog/2016/04/29/cdns-arent-just-for-caching//>  
-该文指出，CDN不仅用于缓存：
- - make your site faster: speed up the dreaded TLS handshake，TLS握手加速；
- - make your site faster: smart routing，智能路由；
- - keep your site up: DDOS mitigation，缓解DDos攻击；
- - performance is reliability，稳定性能；
+What's interesting about UDP?<https://jvns.ca/blog/2016/12/21/what-s-interesting-about-udp/>  
+作者列举了UDP中有趣的一些方面：
+ - DNS uses UDP；
+ - statsd uses UDP；
+ - Packet size limits；
+ - WebRTC uses UDP；
+ - Some games use UDP；
+ - video streaming uses UDP, sometimes；
+ - probably don’t reimplement TCP on top of UDP；
+ - Google is maybe trying to reimplement TCP with UDP though；
+ - multicast；
 
 
 # Tips
