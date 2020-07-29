@@ -2,59 +2,43 @@ Arts11
 ===
 
 # Algorithm
-## 剑指 Offer 45. 把数组排成最小的数 ，<https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/>
-### 描述：输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
-### 思路：int转成字符串，比较两个字符串a+b和b+a的大小，然后整体排序。
+## 56. 合并区间. 把数组排成最小的数 ，<https://leetcode-cn.com/problems/merge-intervals/>
+### 描述：给出一个区间的集合，请合并所有重叠的区间。
+### 思路：先按区间前边界排序，得到的数组中，如果有重叠区间，一定是连续的；再遍历一次，通过判断后边界，依次合并。
 ### java实现：
 	class Solution {
-
-	    public String minNumber(int[] nums) {
-
-	    	String[] numStrs = new String[nums.length];
-	    	for(int i=0; i<nums.length; i++){
-	    		numStrs[i] = String.valueOf(nums[i]);
-	    	}
-	    	
-	    	sort(numStrs);
-	    	
-	    	StringBuilder sb = new StringBuilder(); 
-	    	for(String s: numStrs){
-	    		sb.append(s);
-	    	}
-	    	return sb.toString();
-	    }
-	    
-	    private void sort(String[] numStrs){
-	    	// 插入排序 
-	    	int arrayLen = numStrs.length;
-	    	if(arrayLen <= 1){
-	    		return;
-	    	}
-	    	
-	    	for(int i=1; i<arrayLen; i++){
-	    		
-	    		// [0,i-1]是排好序的区间
-	    		String value = numStrs[i];
-	    		int j=i-1;
-	    		for(; j>=0; j--){
-	    			if(compare(value, numStrs[j]) < 0){
-	    				numStrs[j+1] = numStrs[j];
-	    			} else{
-	    				break;
-	    			}
-	    		}
-	    		numStrs[j+1] = value;
-	    	}
-	    	
-	    }
-	    
-	    // 1:a>b; -1:a<b
-	    private int compare(String a, String b){
-            return (a+b).compareTo(b+a);
-	    }
-	
+   	 public int[][] merge(int[][] intervals) {
+		    	if(intervals.length <= 0){
+		    		return new int[][]{};
+		    	}
+		    	// 排序
+		    	Arrays.sort(intervals, new Comparator<int[]>(){
+					@Override
+					public int compare(int[] o1, int[] o2) {
+						return o1[0] - o2[0];
+					}
+		    	});
+		    	
+		    	List<int[]> res = new ArrayList<>();
+		    	res.add(intervals[0]);
+		    	for(int i=1; i<intervals.length; i++){
+		    		int[] peek = res.get(res.size() - 1);
+		    		int[] curInterval = intervals[i];
+		    		
+		    		if(curInterval[0] <= peek[1]){
+		    			// 合并
+		    			peek[1] = Math.max(curInterval[1], peek[1]);
+		    		} else{
+		    			res.add(curInterval);
+		    		}
+		    	}
+		    	
+		    	return res.toArray(new int[res.size()][2]);
+		    	
+	//		    	Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
+		    
+   	 }
 	}
-
 # Review
 What's interesting about UDP?<https://jvns.ca/blog/2016/12/21/what-s-interesting-about-udp/>  
 作者列举了UDP中有趣的一些方面：
