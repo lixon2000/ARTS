@@ -2,42 +2,47 @@ Arts12
 ===
 
 # Algorithm
-## 56. 合并区间. 把数组排成最小的数 ，<https://leetcode-cn.com/problems/merge-intervals/>
-### 描述：给出一个区间的集合，请合并所有重叠的区间。
-### 思路：先按区间前边界排序，得到的数组中，如果有重叠区间，一定是连续的；再遍历一次，通过判断后边界，依次合并。
+## 86. 分隔链表.  <https://leetcode-cn.com/problems/partition-list//>
+### 描述：给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。你应当保留两个分区中每个节点的初始相对位置。
+### 思路：和x比较大小，拆成两个链表，再合并。
 ### java实现：
+	/**
+	 * Definition for singly-linked list.
+	 * public class ListNode {
+	 *     int val;
+	 *     ListNode next;
+	 *     ListNode(int x) { val = x; }
+	 * }
+	 */
 	class Solution {
-   	 public int[][] merge(int[][] intervals) {
-		    	if(intervals.length <= 0){
-		    		return new int[][]{};
-		    	}
-		    	// 排序
-		    	Arrays.sort(intervals, new Comparator<int[]>(){
-					@Override
-					public int compare(int[] o1, int[] o2) {
-						return o1[0] - o2[0];
-					}
-		    	});
-		    	
-		    	List<int[]> res = new ArrayList<>();
-		    	res.add(intervals[0]);
-		    	for(int i=1; i<intervals.length; i++){
-		    		int[] peek = res.get(res.size() - 1);
-		    		int[] curInterval = intervals[i];
-		    		
-		    		if(curInterval[0] <= peek[1]){
-		    			// 合并
-		    			peek[1] = Math.max(curInterval[1], peek[1]);
-		    		} else{
-		    			res.add(curInterval);
-		    		}
-		    	}
-		    	
-		    	return res.toArray(new int[res.size()][2]);
-		    	
-	//		    	Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
-		    
-   	 }
+	    public ListNode partition(ListNode head, int x) {
+
+	    	if(head == null || head.next == null){
+	    		return head;
+	    	}
+	    	
+	    	ListNode ls = new ListNode(-1);
+	    	ListNode lHead = ls;
+	    	ListNode rs = new ListNode(-1);
+	    	ListNode rHead = rs;
+	    	
+	    	while(head != null){
+	    		if(head.val < x){
+	    			ls.next = head;
+	    			ls = head;
+	    		} else{
+	    			rs.next = head;
+	    			rs = head;
+	    		}
+	    		
+	    		head = head.next;
+	    	}
+	    	
+            rs.next = null;
+	    	ls.next = rHead.next;
+	    	return lHead.next;
+	    
+    }
 	}
 # Review
 SQL queries don't start with SELECT<https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/>  
