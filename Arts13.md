@@ -7,14 +7,14 @@ Arts13
 ### 思路：递归使用归并排序。
 ### java实现：
 	/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
+	 * Definition for singly-linked list.
+	 * public class ListNode {
+	 *     int val;
+	 *     ListNode next;
+	 *     ListNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
 
 		public ListNode sortList(ListNode head) {
 			return mergeSort(head);
@@ -71,9 +71,7 @@ class Solution {
 			
 			return dummyNode.next;
 		}
-		
-	
-}
+	}
 	
 # Review
 SQL queries don't start with SELECT<https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/>  
