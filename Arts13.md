@@ -74,8 +74,8 @@ Arts13
 	}
 	
 # Review
-SQL queries don't start with SELECT<https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/>  
-SQL语句的执行顺序相关的问题，通常的顺序是：
+Networking tool comics!<https://jvns.ca/blog/2019/02/10/a-few-networking-tool-comics/>  
+网络工具的有趣解释：
  - FROM/JOIN and all the ON conditions
  - WHERE
  - GROUP BY
