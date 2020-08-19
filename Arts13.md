@@ -51,7 +51,7 @@ Arts13
 			ListNode cur = dummyNode;
 			
 			while(head1 != null && head2 != null){
-				if(head1.val <= head2.val){
+c				if(head1.val <= head2.val){
 					cur.next = head1;
 					head1 = head1.next;
 				} else{
@@ -75,14 +75,8 @@ Arts13
 	
 # Review
 Networking tool comics!<https://jvns.ca/blog/2019/02/10/a-few-networking-tool-comics/>  
-网络工具的有趣解释：
- - FROM/JOIN and all the ON conditions
- - WHERE
- - GROUP BY
- - HAVING
- - SELECT (including window functions)
- - ORDER BY
- - LIMIT
+该文用生动的漫画解释了curl、ssh、netcat、nmap、openSSL、ethtool网络工具。
+
 
 
 # Tips
