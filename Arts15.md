@@ -38,17 +38,13 @@ Arts15
   	}
 	
 # Review
-## LevelDB doc <https://github.com/google/leveldb/blob/master/doc/impl.md>  
-### 该文是levelDB的实现介绍。介绍了重点模块
- - log：WAL，存储了一系列的最近更新操作。每条update操作都写入当前的.log文件尾部，当文件超过4M时，被转成sorted table（sst文件），然后滚动创建新的log文件。
-当前log文件的数据被保存在一个内存结构中，memtable。任何update操作首先被写入log中，然后写入memtable。每个read操作都会首先访问memtable，如果memtable中没有的话再触发磁盘检索。memtable中的数据按照key顺序存储，即有序存储（基于跳表实现）。Log文件是无序的。
- - Sorted tables：按key顺序存储的entry，或Key的删除标记。Sst和memtable一样都是按照key排序的。Sst文件中还包含布隆过滤器，判断key是否存在于此sst文件。
-Sorted table按level进行组织。由log文件生成的sst被放在young level，又叫做level-0。当level-0的文件数量超过阈值（通常是4）时，这些level-0的文件将会与level-1中的那些有数据重叠（Key在两个文件中都存在）的文件合并，并生成新的一序列level-1文件。
-level-0会包含重复的key，然而，level-1及以上只会包含不同的“非重叠”的keys区间。因为在合并时，level-L中的一个文件，将会和level-(L+1)中那些有keys重叠（覆盖）的文件merged，并生成一组新的level-(L+1)文件。同一个level中，不会有key重叠的sst文件；但是不同level可能会有！
-level的级别越低，数据新鲜程度越高。遍历数据时，从level 0开始向高level推进。
- - Manifest：清单。manifest文件中列举了构成每个level的SST文件列表，以及相应的key区间，还包括一些重要的metadata。数据库被重新打开时，Manifest文件被创建。它跟log格式类似，都是以追加的方式写入。
- - Current：存储最新的Manifest文件名的文本文件。
- - LOG和LOG.lod：打印操作日志，一般是level合并日志。
+## Linux debugging tools I love <https://jvns.ca/blog/2016/07/03/debugging-tools-i-love/>  
+#### 该文列举了作者最喜欢的几个Linux下调试的工具
+ - strace，跟踪系统调用；
+ - dstat，每秒打印来自网络写入磁盘的数据量；
+ - tcpdump+wiredshark，打印网络包；
+ - perf，打印C程序的占用CPU时间；
+ - opensnoop，展示当前计算机上有哪些打开的文件；
 
 
 # Tips
