@@ -2,40 +2,42 @@ Arts16
 ===
 
 # Algorithm
-## 88. 合并两个有序数组  <https://leetcode-cn.com/problems/merge-sorted-array/>
-### 描述：给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组。
-### 思路：双指针从后向前填充。
+## 122. 买卖股票的最佳时机 II  <https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/>
+### 描述：给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+### 思路：只叠加上升中的价格差。
 ### java实现：
-	class Solution {
-      public void merge(int[] nums1, int m, int[] nums2, int n) {
+	public class BestTime2BuyStock2 {
+    public int maxProfit(int[] prices) {
 
+    	if(prices.length == 0){
+    		return 0;
+    	}
+    	
+    	int maxProfit = 0;		// 利润和
+    	int prePrice = prices[0];
+    	
+    	for(int price: prices){
+    		// 一旦低于前一天价格，则增加maxProfit
+    		if(price > prePrice){
+    			// 上升坡
+    			maxProfit += (price - prePrice);
+    		} else{
+    			// 下降坡
+    		}
+    		prePrice = price;
+    	}
+    	
+    	return maxProfit;
+    }
+    
+    public static void main(String [] args){
+    	int [] a = new int[]{6, 9, 10, 7, 11, 3, 5};
+    	BestTime2BuyStock2 s = new BestTime2BuyStock2();
+		System.out.println(s.maxProfit(a));
+    }
+    
+	}
 
-        // 指向最后
-        int p1 = m-1;
-        int p2 = n-1;
-
-        int p = m+n-1;
-
-        while(p1 >= 0 && p2 >= 0){
-          int max = 0;		// 大的数
-          if(nums1[p1] > nums2[p2]){
-            max = nums1[p1];
-            p1--;
-          } else{
-            max = nums2[p2];
-            p2--;
-          }
-          nums1[p] = max;
-          p--;
-        }
-
-        // nums2剩余部分
-        if(p2 >= 0){
-          System.arraycopy(nums2, 0, nums1, 0, p2+1);
-        }
-
-      }
-  	}
 	
 # Review
 ## Linux debugging tools I love <https://jvns.ca/blog/2016/07/03/debugging-tools-i-love/>  
