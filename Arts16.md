@@ -28,14 +28,7 @@ Arts16
     	}
     	
     	return maxProfit;
-    }
-    
-    public static void main(String [] args){
-    	int [] a = new int[]{6, 9, 10, 7, 11, 3, 5};
-    	BestTime2BuyStock2 s = new BestTime2BuyStock2();
-		System.out.println(s.maxProfit(a));
-    }
-    
+    }  
 	}
 
 	
