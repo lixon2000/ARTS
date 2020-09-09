@@ -33,13 +33,12 @@ Arts16
 
 	
 # Review
-## Linux debugging tools I love <https://jvns.ca/blog/2016/07/03/debugging-tools-i-love/>  
-#### 该文列举了作者最喜欢的几个Linux下调试的工具
- - strace，跟踪系统调用；
- - dstat，每秒打印来自网络写入磁盘的数据量；
- - tcpdump+wiredshark，打印网络包；
- - perf，打印C程序的占用CPU时间；
- - opensnoop，展示当前计算机上有哪些打开的文件；
+## IP addresses & routing <https://jvns.ca/blog/2018/07/24/ip-addresses-routing/>  
+#### 该文阐述了关于IP地址和路由的几个观点
+ - IP头；
+ - 子网；
+ - 本地创建一个ip包，发生了什么：route table；iptables；IPSec；
+ - AWS上的几点注意事项，VPC上管理路由的方式；
 
 
 # Tips
