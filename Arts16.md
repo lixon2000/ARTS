@@ -43,9 +43,7 @@ Arts16
 
 # Tips
 #### 动态代理
- - Jdk和cglib的区别：jdk的动态代理利用反射实现了一个给定接口的匿名类，生成了字节码，这个匿名类中，每个方法都会调用父类中InvocationHandler的invoke方法。Cglib使用字节码引擎ASM，将代理类Class加载进来，修改其字节码实现一个子类。
- - Cglib可以对类和接口进行代理，通过Enhancer创建一个类的子类，在子类的方法被调用时，进行拦截。
- - 除了Enhancer外，Cglib还可以用ImmutableBean创建不可能改的对象、拷贝不同对象的BeanCopier、用BeanGenerator操纵字节码创建任意bean对象、BeanMap、BulkBean等。KeyFactory生成接口的实例，Mixin合并接口
+ - synchronized关键字:代码层面上是锁住一个对象，该对象锁定区间内只允许一个线程访问。编译成字节码后，synchronized区间被一对字节码指令包围，前面是monitorenter，后面是monitorexit，每次monitorernter时需要判断monitor是否被其他线程占用，如果占用了，该线程被block，放入monitor队列。实现上，每个对象有一个监视器，监视器有个计数器，monitorenter时，计数器加一，monitorexit时，计数器减一。对内存模型来说，monitorenter时，主内存lock，此后不能对该区域主内存访问。
 
 
 
